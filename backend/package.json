@@ -1,5 +1,5 @@
 {
-  "name": "ecomdev-payments-backend",
+  "name": "edu-payments-backend",
   "version": "0.0.1",
   "description": "O'quv markazi to'lovlari API (NestJS + Prisma + SQLite)",
   "author": "",
