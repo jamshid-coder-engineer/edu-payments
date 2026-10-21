@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+
+# Muhit va baza fayllari repoga tushmasin
+.env
+*.db
+*.db-journal
+
+.DS_Store
+*.log
+
+# Shaxsiy hujjatlar va muharrir sozlamalari
+docs/
+.vscode/

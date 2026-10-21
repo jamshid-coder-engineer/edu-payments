@@ -1,0 +1,41 @@
+// Ma'lumotlar bazasi sxemasi: o'quvchilar va ularning to'lovlari.
+// Summalar butun son (so'm) sifatida saqlanadi: kasr va yaxlitlash xatolari bo'lmaydi.
+// Sanalar "YYYY-MM-DD" matni sifatida saqlanadi: vaqt zonasi tufayli to'lov
+// boshqa kunga yoki oyga o'tib ketmaydi, oy bo'yicha filtr oddiy solishtirish bo'ladi.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id         Int       @id @default(autoincrement())
+  name       String
+  phone      String
+  group      String
+  monthlyFee Int
+  /// O'qishni boshlagan sana (YYYY-MM-DD). Shu oydan oldingi oylar uchun qarz hisoblanmaydi.
+  joinedAt   String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  payments   Payment[]
+
+  @@index([joinedAt])
+}
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  amount    Int
+  /// To'lov sanasi (YYYY-MM-DD), vaqtsiz.
+  paidAt    String
+  createdAt DateTime @default(now())
+
+  @@index([studentId, paidAt])
+  @@index([paidAt])
+}
