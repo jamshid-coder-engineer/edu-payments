@@ -59,7 +59,7 @@ function SummaryTile({
         </span>
         <p className="text-sm font-semibold text-foreground">{label}</p>
       </div>
-      <p className="text-lg font-semibold tabular-nums sm:text-2xl">{value}</p>
+      <p className="text-lg font-medium tabular-nums sm:text-2xl">{value}</p>
       <p className="text-xs text-muted-foreground">{hint}</p>
     </div>
   );
