@@ -1,4 +1,8 @@
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import {
+  CalendarDaysIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { currentMonth, formatMonth, shiftMonth } from '@/lib/date';
 
@@ -17,14 +21,15 @@ export function MonthSwitcher({ month, onChange }: MonthSwitcherProps) {
       <Button
         variant="outline"
         size="icon"
-        className="size-11"
+        className="size-11 bg-card shadow-xs"
         aria-label="Oldingi oy"
         onClick={() => onChange(shiftMonth(month, -1))}
       >
         <ChevronLeftIcon />
       </Button>
 
-      <label className="relative flex h-11 flex-1 items-center justify-center rounded-md border bg-background text-base font-medium">
+      <label className="relative flex h-11 flex-1 items-center justify-center gap-2 rounded-lg border bg-card text-base font-medium shadow-xs transition-colors focus-within:ring-3 focus-within:ring-ring/50 hover:bg-muted">
+        <CalendarDaysIcon className="size-4 text-muted-foreground" />
         {formatMonth(month)}
         {/* Ko'rinmas kalendar: bosilganda telefonning oy tanlagichi ochiladi */}
         <input
@@ -40,7 +45,7 @@ export function MonthSwitcher({ month, onChange }: MonthSwitcherProps) {
       <Button
         variant="outline"
         size="icon"
-        className="size-11"
+        className="size-11 bg-card shadow-xs"
         aria-label="Keyingi oy"
         disabled={isLatest}
         onClick={() => onChange(shiftMonth(month, 1))}

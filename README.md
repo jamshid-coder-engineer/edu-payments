@@ -1,6 +1,6 @@
 # O'quv markazi: to'lovlar
 
-O'quv markazi uchun to'lovlarni hisobga oluvchi mini tizim. O'quvchilar va ularning to'lovlari saqlanadi, tanlangan oy bo'yicha kim qancha qarzi borligi ko'rsatiladi. Har bir qarzdorning to'lovlar tarixini oylar bo'yicha ko'rish va shu yerdan to'lov qo'shish mumkin. Veb-sahifa telefonda ishlatishga moslangan.
+O'quv markazi uchun to'lovlarni hisobga oluvchi mini tizim. O'quvchilar va ularning to'lovlari saqlanadi, tanlangan oy bo'yicha kim qancha qarzi borligi ko'rsatiladi. Har bir qarzdorning to'lovlar tarixini oylar bo'yicha ko'rish va shu yerdan to'lov qo'shish mumkin. Veb-sahifa telefonda ishlatishga moslangan, yorug' va qorong'i rejimni qo'llaydi.
 
 <p>
   <img src="assets/debtors.png" alt="Qarzdorlar ro'yxati" width="250">

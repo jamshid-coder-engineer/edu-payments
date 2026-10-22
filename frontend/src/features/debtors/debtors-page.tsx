@@ -1,5 +1,6 @@
 import { PlusIcon, WalletIcon } from 'lucide-react';
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
 import type { PaymentFormDefaults } from '@/features/payments/payment-form';
 import { currentMonth, defaultPaymentDate } from '@/lib/date';
@@ -40,23 +41,39 @@ export function DebtorsPage() {
   };
 
   return (
-    <div className="mx-auto flex min-h-svh w-full max-w-3xl flex-col gap-4 px-4 py-4 sm:py-8">
-      <header className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <WalletIcon className="size-6" />
-          <h1 className="text-xl font-semibold">Qarzdorlar</h1>
+    <div className="min-h-svh">
+      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-3 px-4">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+              <WalletIcon className="size-5" />
+            </span>
+            <div className="min-w-0 leading-tight">
+              <h1 className="truncate text-lg font-semibold">Qarzdorlar</h1>
+              <p className="hidden text-xs text-muted-foreground sm:block">
+                O'quv markazi to'lovlari
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <Button
+              className="h-10"
+              aria-label="To'lov qo'shish"
+              onClick={() => setPayment({ paidAt: defaultPaymentDate(month) })}
+            >
+              <PlusIcon />
+              <span className="sm:hidden">To'lov</span>
+              <span className="hidden sm:inline">To'lov qo'shish</span>
+            </Button>
+          </div>
         </div>
-        <Button
-          className="h-10"
-          onClick={() => setPayment({ paidAt: defaultPaymentDate(month) })}
-        >
-          <PlusIcon />
-          To'lov qo'shish
-        </Button>
       </header>
 
-      <MonthSwitcher month={month} onChange={setMonth} />
-      <DebtorList month={month} onPay={payFor} onHistory={setHistory} />
+      <main className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4 py-4 sm:py-6">
+        <MonthSwitcher month={month} onChange={setMonth} />
+        <DebtorList month={month} onPay={payFor} onHistory={setHistory} />
+      </main>
       <Suspense fallback={null}>
         <PaymentDrawer defaults={payment} onClose={() => setPayment(null)} />
         <PaymentHistoryDrawer
