@@ -38,7 +38,7 @@ Keyin oching:
 **Telefondan ochish** (kompyuter bilan bitta Wi-Fi'da):
 
 ```bash
-npm --prefix frontend run dev -- --host
+npm run dev:host
 ```
 
 Terminalda chiqqan `Network: http://192.168.x.x:5173` manzilini telefonda oching. API so'rovlari Vite orqali backendga yo'naltiriladi, shuning uchun alohida sozlash kerak emas.
@@ -49,6 +49,7 @@ Terminalda chiqqan `Network: http://192.168.x.x:5173` manzilini telefonda oching
 | --- | --- |
 | `npm run setup` | Hamma narsani o'rnatadi va bazani tayyorlaydi |
 | `npm run dev` | Backend (3000) va frontend (5173) ni birga ishga tushiradi |
+| `npm run dev:host` | Xuddi shu, frontend lokal tarmoqda ham ochiladi (telefondan kirish uchun) |
 | `npm test` | Backend unit + e2e va frontend testlari |
 | `npm run build` | Ikkala qismni production uchun yig'adi |
 | `npm run lint` | Lint tekshiruvi |
