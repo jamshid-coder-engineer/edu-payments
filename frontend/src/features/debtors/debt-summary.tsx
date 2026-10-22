@@ -57,9 +57,11 @@ function SummaryTile({
         >
           <Icon className="size-4" />
         </span>
-        <p className="text-sm text-muted-foreground">{label}</p>
+        <p className="text-sm font-semibold text-foreground">{label}</p>
       </div>
-      <p className="text-lg font-semibold tabular-nums sm:text-2xl">{value}</p>
+      <p className="text-xl font-bold tracking-tight tabular-nums sm:text-2xl">
+        {value}
+      </p>
       <p className="text-xs text-muted-foreground">{hint}</p>
     </div>
   );

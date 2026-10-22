@@ -80,7 +80,17 @@ export function PaymentForm({ defaults, onSuccess }: PaymentFormProps) {
                 disabled={students.isPending}
               />
               {students.isError && (
-                <FieldError>O'quvchilar ro'yxati yuklanmadi</FieldError>
+                <FieldError className="flex flex-wrap items-center gap-x-2">
+                  O'quvchilar ro'yxati yuklanmadi: {students.error.message}.
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="h-auto p-0"
+                    onClick={() => students.refetch()}
+                  >
+                    Qayta urinish
+                  </Button>
+                </FieldError>
               )}
               <FieldError errors={[fieldState.error]} />
             </Field>

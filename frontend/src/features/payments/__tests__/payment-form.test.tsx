@@ -102,4 +102,31 @@ describe('PaymentForm', () => {
     expect(await screen.findByText(message)).toBeInTheDocument();
     expect(onSuccess).not.toHaveBeenCalled();
   });
+
+  it("o'quvchilar yuklanmasa sababini aytadi va qayta urinish beradi", async () => {
+    let calls = 0;
+    mockApi({
+      'GET /students': () => {
+        calls += 1;
+        if (calls === 1) throw new TypeError('Failed to fetch');
+        return Response.json(students);
+      },
+    });
+    renderWithQuery(
+      <PaymentForm
+        defaults={{ studentId: 1, paidAt: today }}
+        onSuccess={vi.fn()}
+      />,
+    );
+
+    expect(
+      await screen.findByText(/Server bilan aloqa yo'q/),
+    ).toBeInTheDocument();
+    await userEvent.click(
+      screen.getByRole('button', { name: 'Qayta urinish' }),
+    );
+    expect(
+      await screen.findByText('Ali Valiyev · Frontend-1'),
+    ).toBeInTheDocument();
+  });
 });
