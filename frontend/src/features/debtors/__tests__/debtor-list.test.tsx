@@ -8,7 +8,9 @@ import { DebtorList } from '../debtor-list';
 describe('DebtorList', () => {
   it("qarzdorlar, ularning soni va jami qarzni ko'rsatadi", async () => {
     mockApi({ 'GET /debtors': () => Response.json(debtors) });
-    renderWithQuery(<DebtorList month="2026-10" onPay={vi.fn()} />);
+    renderWithQuery(
+      <DebtorList month="2026-10" onPay={vi.fn()} onHistory={vi.fn()} />,
+    );
 
     expect(await screen.findByText('Ali Valiyev')).toBeInTheDocument();
     expect(screen.getByText('Malika Karimova')).toBeInTheDocument();
@@ -18,7 +20,9 @@ describe('DebtorList', () => {
 
   it("so'rovga tanlangan oyni yuboradi", async () => {
     const fetchMock = mockApi({ 'GET /debtors': () => Response.json([]) });
-    renderWithQuery(<DebtorList month="2026-09" onPay={vi.fn()} />);
+    renderWithQuery(
+      <DebtorList month="2026-09" onPay={vi.fn()} onHistory={vi.fn()} />,
+    );
 
     await screen.findByText(/qarzdorlar yo'q/);
     expect(fetchMock).toHaveBeenCalledWith(
@@ -29,7 +33,9 @@ describe('DebtorList', () => {
 
   it("qarzdor bo'lmasa bo'sh holatni ko'rsatadi", async () => {
     mockApi({ 'GET /debtors': () => Response.json([]) });
-    renderWithQuery(<DebtorList month="2026-10" onPay={vi.fn()} />);
+    renderWithQuery(
+      <DebtorList month="2026-10" onPay={vi.fn()} onHistory={vi.fn()} />,
+    );
 
     expect(
       await screen.findByText("Oktabr 2026: qarzdorlar yo'q"),
@@ -44,7 +50,9 @@ describe('DebtorList', () => {
           ? Response.json({ message: 'Baza ishlamayapti' }, { status: 500 })
           : Response.json(debtors),
     });
-    renderWithQuery(<DebtorList month="2026-10" onPay={vi.fn()} />);
+    renderWithQuery(
+      <DebtorList month="2026-10" onPay={vi.fn()} onHistory={vi.fn()} />,
+    );
 
     expect(await screen.findByText('Baza ishlamayapti')).toBeInTheDocument();
     await userEvent.click(
@@ -56,7 +64,9 @@ describe('DebtorList', () => {
   it("To'lov tugmasi o'sha qarzdorni uzatadi", async () => {
     mockApi({ 'GET /debtors': () => Response.json(debtors) });
     const onPay = vi.fn();
-    renderWithQuery(<DebtorList month="2026-10" onPay={onPay} />);
+    renderWithQuery(
+      <DebtorList month="2026-10" onPay={onPay} onHistory={vi.fn()} />,
+    );
 
     const buttons = await screen.findAllByRole('button', { name: "To'lov" });
     await userEvent.click(buttons[1]);

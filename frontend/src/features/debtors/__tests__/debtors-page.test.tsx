@@ -44,4 +44,33 @@ describe("DebtorsPage: kartochkadan to'lov qo'shish", () => {
     );
     expect(debtorCalls.length).toBeGreaterThanOrEqual(2);
   });
+
+  it("Tarix panelidan to'lov formasiga o'tadi", async () => {
+    mockApi({
+      'GET /debtors': () => Response.json(debtors),
+      'GET /students': () => Response.json(students),
+      'GET /students/1/payments': () =>
+        Response.json([
+          { id: 1, studentId: 1, amount: 150_000, paidAt: '2026-10-05' },
+        ]),
+    });
+    renderWithQuery(<DebtorsPage />);
+
+    await userEvent.click(
+      await screen.findByRole('button', {
+        name: "Ali Valiyev: to'lovlar tarixi",
+      }),
+    );
+    const history = await screen.findByRole('dialog');
+    expect(
+      await within(history).findByText("150 000 so'm"),
+    ).toBeInTheDocument();
+
+    await userEvent.click(
+      within(history).getByRole('button', { name: "To'lov qo'shish" }),
+    );
+
+    const form = await screen.findByRole('dialog', { name: "To'lov qo'shish" });
+    expect(within(form).getByLabelText("Summa, so'm")).toHaveValue('450 000');
+  });
 });

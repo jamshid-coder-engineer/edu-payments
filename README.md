@@ -1,11 +1,13 @@
 # O'quv markazi: to'lovlar
 
-O'quv markazi uchun to'lovlarni hisobga oluvchi mini tizim. O'quvchilar va ularning to'lovlari saqlanadi, tanlangan oy bo'yicha kim qancha qarzi borligi ko'rsatiladi. Veb-sahifa telefonda ishlatishga moslangan.
+O'quv markazi uchun to'lovlarni hisobga oluvchi mini tizim. O'quvchilar va ularning to'lovlari saqlanadi, tanlangan oy bo'yicha kim qancha qarzi borligi ko'rsatiladi. Har bir qarzdorning to'lovlar tarixini oylar bo'yicha ko'rish va shu yerdan to'lov qo'shish mumkin. Veb-sahifa telefonda ishlatishga moslangan.
 
 <p>
-  <img src="assets/debtors.png" alt="Qarzdorlar ro'yxati" width="280">
+  <img src="assets/debtors.png" alt="Qarzdorlar ro'yxati" width="250">
   &nbsp;
-  <img src="assets/payment.png" alt="To'lov qo'shish formasi" width="280">
+  <img src="assets/history.png" alt="O'quvchining to'lovlar tarixi" width="250">
+  &nbsp;
+  <img src="assets/payment.png" alt="To'lov qo'shish formasi" width="250">
 </p>
 
 | Qism | Texnologiyalar |
@@ -121,7 +123,7 @@ frontend/
   src/
     features/
       debtors/       qarzdorlar sahifasi, oy tanlash, kartochkalar
-      payments/      to'lov paneli, forma va uning qoidalari
+      payments/      to'lov paneli, forma va uning qoidalari, to'lovlar tarixi
       students/      o'quvchi tanlash
     components/      umumiy komponentlar (ui/ — shadcn/ui)
     lib/             API klient, sana va summa yordamchilari
@@ -151,5 +153,5 @@ frontend/
 1. **To'lov qaysi oy uchun ekanini alohida saqlash.** Hozir to'lov sanasi qaysi oyga tushsa, o'sha oy hisobiga yoziladi: sentabr qarzini oktabrda to'lasa, u oktabrga yoziladi. `billingMonth` maydoni va o'quvchi balansi (avans, eski qarz) bilan ortiqcha to'lov keyingi oyga o'tadi.
 2. **Tariflar tarixi.** Hozir `monthlyFee` o'zgarsa, o'tgan oylar qarzi ham yangi summa bilan hisoblanadi. Tarif o'zgarishlarini sana bilan saqlash kerak.
 3. **Kirish va rollar.** Admin va kassir uchun login, kim qaysi to'lovni kiritganini yozib borish. Xato to'lovni o'chirish o'rniga bekor qilish (storno).
-4. **Interfeysni kengaytirish.** O'quvchilarni qo'shish va tahrirlash sahifasi, to'lovlar tarixi, qidiruv. API'da sahifalab berish (pagination).
+4. **Interfeysni kengaytirish.** O'quvchilarni qo'shish va tahrirlash sahifasi, qidiruv. API'da sahifalab berish (pagination).
 5. **Production'ga tayyorlash.** PostgreSQL va Docker Compose, GitHub Actions'da testlar, Playwright bilan brauzer testlari.

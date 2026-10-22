@@ -1,4 +1,4 @@
-import { PhoneIcon, PlusIcon } from 'lucide-react';
+import { HistoryIcon, PhoneIcon, PlusIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,9 +9,10 @@ import type { Debtor } from '@/types/api';
 interface DebtorCardProps {
   debtor: Debtor;
   onPay: (debtor: Debtor) => void;
+  onHistory: (debtor: Debtor) => void;
 }
 
-export function DebtorCard({ debtor, onPay }: DebtorCardProps) {
+export function DebtorCard({ debtor, onPay, onHistory }: DebtorCardProps) {
   const percent = paidPercent(debtor.paid, debtor.monthlyFee);
 
   return (
@@ -48,10 +49,21 @@ export function DebtorCard({ debtor, onPay }: DebtorCardProps) {
               {formatMoney(debtor.debt)}
             </p>
           </div>
-          <Button className="h-10" onClick={() => onPay(debtor)}>
-            <PlusIcon />
-            To'lov
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              className="h-10"
+              aria-label={`${debtor.name}: to'lovlar tarixi`}
+              onClick={() => onHistory(debtor)}
+            >
+              <HistoryIcon />
+              Tarix
+            </Button>
+            <Button className="h-10" onClick={() => onPay(debtor)}>
+              <PlusIcon />
+              To'lov
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

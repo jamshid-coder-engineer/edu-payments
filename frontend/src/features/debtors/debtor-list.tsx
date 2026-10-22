@@ -11,10 +11,11 @@ import { useDebtors } from './use-debtors';
 interface DebtorListProps {
   month: string;
   onPay: (debtor: Debtor) => void;
+  onHistory: (debtor: Debtor) => void;
 }
 
 /** Qarzdorlar: yuklanish, xato, bo'sh va to'liq holatlar. */
-export function DebtorList({ month, onPay }: DebtorListProps) {
+export function DebtorList({ month, onPay, onHistory }: DebtorListProps) {
   const { data, isPending, isError, error, refetch, isFetching } =
     useDebtors(month);
 
@@ -74,7 +75,7 @@ export function DebtorList({ month, onPay }: DebtorListProps) {
       <ul className="grid gap-3 sm:grid-cols-2">
         {data.map((debtor) => (
           <li key={debtor.studentId}>
-            <DebtorCard debtor={debtor} onPay={onPay} />
+            <DebtorCard debtor={debtor} onPay={onPay} onHistory={onHistory} />
           </li>
         ))}
       </ul>
