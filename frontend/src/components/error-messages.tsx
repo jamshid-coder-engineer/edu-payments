@@ -9,8 +9,9 @@ export function ErrorMessages({ messages }: { messages: string[] }) {
     <Alert variant="destructive">
       <AlertCircleIcon />
       <AlertDescription>
-        {messages.map((message) => (
-          <p key={message}>{message}</p>
+        {messages.map((message, index) => (
+          // Xabarlar takrorlanishi mumkin, shuning uchun kalitda tartib raqami ham bor
+          <p key={`${index}-${message}`}>{message}</p>
         ))}
       </AlertDescription>
     </Alert>

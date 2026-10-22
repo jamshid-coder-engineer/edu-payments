@@ -12,7 +12,7 @@ O'quv markazi uchun to'lovlarni hisobga oluvchi mini tizim. O'quvchilar va ularn
 | --- | --- |
 | Backend | Node.js, TypeScript (strict), NestJS 11, Prisma 6, SQLite, Swagger |
 | Frontend | React 19, TypeScript (strict), Vite, Tailwind CSS 4, shadcn/ui, TanStack Query, react-hook-form + zod |
-| Testlar | Jest (unit + e2e, alohida test bazasida), Vitest |
+| Testlar | Jest (unit + e2e, alohida test bazasida), Vitest + Testing Library |
 
 ## Ishga tushirish
 
@@ -125,6 +125,7 @@ frontend/
       students/      o'quvchi tanlash
     components/      umumiy komponentlar (ui/ — shadcn/ui)
     lib/             API klient, sana va summa yordamchilari
+    test/            test sozlamalari, soxta backend (fetch mock)
 ```
 
 ### Qarorlar
@@ -132,6 +133,7 @@ frontend/
 - **Summalar butun son (so'm).** Kasr sonlar bilan yaxlitlash xatolari bo'lmaydi.
 - **Sanalar `YYYY-MM-DD` matni.** Vaqt zonasi tufayli to'lov boshqa kunga yoki oyga o'tib ketmaydi. "Bugun" `APP_TIMEZONE` (standart `Asia/Tashkent`) bo'yicha aniqlanadi.
 - **Qarz hisobi bazadan ajratilgan toza funksiya.** Shu sababli barcha holatlar (oy chegaralari, dekabr → yanvar, bir nechta to'lov, ortiqcha to'lov) unit testlar bilan tekshirilgan.
+- **Frontend testlari foydalanuvchi ko'zi bilan.** Komponentlar soxta backend bilan tekshiriladi: ro'yxat, xato va qayta urinish, forma qoidalari, backend xabari, kartochkadan to'lov qo'shib ro'yxat yangilanishi. Kutilmagan xatoda oq ekran o'rniga xabar chiqadi (Error Boundary).
 - **SQLite.** O'rnatish shart emas, `git clone` dan keyin darhol ishlaydi. PostgreSQL'ga o'tish uchun Prisma'da `provider` ni almashtirib, migratsiyani qayta yaratish yetarli, kod o'zgarmaydi.
 
 ### Muhit o'zgaruvchilari (`backend/.env`)

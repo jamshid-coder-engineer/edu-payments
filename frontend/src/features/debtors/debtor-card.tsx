@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { formatMoney } from '@/lib/money';
+import { formatMoney, paidPercent } from '@/lib/money';
 import type { Debtor } from '@/types/api';
 
 interface DebtorCardProps {
@@ -12,7 +12,7 @@ interface DebtorCardProps {
 }
 
 export function DebtorCard({ debtor, onPay }: DebtorCardProps) {
-  const paidPercent = Math.round((debtor.paid / debtor.monthlyFee) * 100);
+  const percent = paidPercent(debtor.paid, debtor.monthlyFee);
 
   return (
     <Card className="gap-0 py-4">
@@ -34,10 +34,7 @@ export function DebtorCard({ debtor, onPay }: DebtorCardProps) {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Progress
-            value={paidPercent}
-            aria-label={`${paidPercent}% to'langan`}
-          />
+          <Progress value={percent} aria-label={`${percent}% to'langan`} />
           <p className="text-xs text-muted-foreground tabular-nums">
             To'langan {formatMoney(debtor.paid)} /{' '}
             {formatMoney(debtor.monthlyFee)}

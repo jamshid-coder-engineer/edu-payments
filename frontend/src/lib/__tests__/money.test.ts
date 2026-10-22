@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatMoney, groupDigits, parseAmount } from '../money';
+import { formatMoney, groupDigits, paidPercent, parseAmount } from '../money';
 
 describe('money', () => {
   it('raqamlarni uchtadan guruhlaydi', () => {
@@ -15,5 +15,12 @@ describe('money', () => {
     expect(parseAmount('12.5')).toBeNaN();
     expect(parseAmount('-5')).toBeNaN();
     expect(parseAmount('')).toBeNaN();
+  });
+
+  it("paidPercent 0–100 oralig'ida, oylik to'lov 0 bo'lsa 0", () => {
+    expect(paidPercent(300_000, 600_000)).toBe(50);
+    expect(paidPercent(0, 600_000)).toBe(0);
+    expect(paidPercent(900_000, 600_000)).toBe(100);
+    expect(paidPercent(100, 0)).toBe(0);
   });
 });

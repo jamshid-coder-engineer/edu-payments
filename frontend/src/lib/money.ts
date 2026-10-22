@@ -14,5 +14,11 @@ export function parseAmount(value: string): number {
   return /^\d+$/.test(digits) ? Number(digits) : Number.NaN;
 }
 
+/** To'langan qism foizda, 0–100. Oylik to'lov 0 bo'lsa 0 (bo'lishda NaN chiqmasin). */
+export function paidPercent(paid: number, monthlyFee: number): number {
+  if (monthlyFee <= 0) return 0;
+  return Math.min(100, Math.max(0, Math.round((paid / monthlyFee) * 100)));
+}
+
 /** Backenddagi chegara bilan bir xil (backend/src/common/limits.ts). */
 export const MAX_AMOUNT = 100_000_000;
