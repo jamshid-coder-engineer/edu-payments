@@ -7,21 +7,17 @@ export function debtStatus(debtor: Pick<Debtor, 'paid'>): DebtStatus {
   return debtor.paid > 0 ? 'partial' : 'unpaid';
 }
 
-/** Holatning ko'rinishi bir joyda: yorliq, rang chizig'i va progress rangi. */
+/** Holat faqat yorliq bilan ko'rsatiladi: matni va rangi shu yerda. */
 export const STATUS_STYLE: Record<
   DebtStatus,
-  { label: string; badge: string; accent: string; progress: string }
+  { label: string; badge: string }
 > = {
   unpaid: {
     label: "To'lamagan",
     badge: 'bg-destructive/10 text-destructive dark:bg-destructive/20',
-    accent: 'bg-destructive',
-    progress: '*:data-[slot=progress-indicator]:bg-destructive',
   },
   partial: {
     label: 'Qisman',
     badge: 'bg-warning/15 text-warning dark:bg-warning/20',
-    accent: 'bg-warning',
-    progress: '*:data-[slot=progress-indicator]:bg-warning',
   },
 };

@@ -20,13 +20,8 @@ export function DebtorCard({ debtor, onPay, onHistory }: DebtorCardProps) {
   const status = STATUS_STYLE[debtStatus(debtor)];
 
   return (
-    <Card className="relative h-full gap-0 py-4 shadow-xs transition-shadow hover:shadow-md">
-      {/* Chap chetdagi rang chizig'i: holatni bir qarashda ko'rsatadi */}
-      <span
-        aria-hidden="true"
-        className={cn('absolute inset-y-0 left-0 w-1', status.accent)}
-      />
-      <CardContent className="flex h-full flex-col gap-4 px-4 pl-5">
+    <Card className="h-full gap-0 py-4 shadow-xs transition-shadow hover:shadow-md">
+      <CardContent className="flex h-full flex-col gap-4 px-4">
         <div className="flex items-start gap-3">
           <InitialsAvatar name={debtor.name} colorKey={debtor.studentId} />
           <div className="min-w-0 flex-1">
@@ -61,7 +56,7 @@ export function DebtorCard({ debtor, onPay, onHistory }: DebtorCardProps) {
           <Progress
             value={percent}
             aria-label={`${percent}% to'langan`}
-            className={cn('h-1.5', status.progress)}
+            className="h-1.5"
           />
         </div>
 
