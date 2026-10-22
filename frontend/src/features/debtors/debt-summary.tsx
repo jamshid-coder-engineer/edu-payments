@@ -25,7 +25,6 @@ export function DebtSummary({ debtors }: { debtors: Debtor[] }) {
         iconClass="bg-destructive/10 text-destructive"
         label="Jami qarz"
         value={formatMoney(totalDebt)}
-        valueClass="text-destructive"
         hint={`Eng kattasi: ${formatMoney(largest)}`}
       />
     </div>
@@ -37,7 +36,6 @@ interface SummaryTileProps {
   iconClass: string;
   label: string;
   value: string;
-  valueClass?: string;
   hint: string;
 }
 
@@ -46,7 +44,6 @@ function SummaryTile({
   iconClass,
   label,
   value,
-  valueClass,
   hint,
 }: SummaryTileProps) {
   return (
@@ -62,14 +59,7 @@ function SummaryTile({
         </span>
         <p className="text-sm text-muted-foreground">{label}</p>
       </div>
-      <p
-        className={cn(
-          'text-lg font-semibold tabular-nums sm:text-2xl',
-          valueClass,
-        )}
-      >
-        {value}
-      </p>
+      <p className="text-lg font-semibold tabular-nums sm:text-2xl">{value}</p>
       <p className="text-xs text-muted-foreground">{hint}</p>
     </div>
   );

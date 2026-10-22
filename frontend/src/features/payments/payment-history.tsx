@@ -71,7 +71,7 @@ export function PaymentHistory({
             <div className="mb-1.5 flex items-baseline justify-between gap-2">
               <h3 className="font-medium">{formatMonth(group.month)}</h3>
               <p
-                className={`text-xs tabular-nums ${debt > 0 ? 'text-destructive' : 'text-muted-foreground'}`}
+                className={`text-xs tabular-nums ${debt > 0 ? 'font-medium text-foreground' : 'text-muted-foreground'}`}
               >
                 {debt > 0
                   ? `Qarz ${formatMoney(debt)}`

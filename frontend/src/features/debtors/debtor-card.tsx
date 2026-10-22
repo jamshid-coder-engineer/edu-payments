@@ -68,7 +68,7 @@ export function DebtorCard({ debtor, onPay, onHistory }: DebtorCardProps) {
         <div className="mt-auto flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="text-xs text-muted-foreground">Qarz</p>
-            <p className="text-lg font-semibold whitespace-nowrap tabular-nums text-destructive">
+            <p className="text-lg font-semibold whitespace-nowrap tabular-nums">
               {formatMoney(debtor.debt)}
             </p>
           </div>
